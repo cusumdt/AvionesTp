@@ -116,14 +116,7 @@ public class Enemy : ShipBase
     {
         Vector3 heading = Player.position - transform.position;
         float dot = Vector3.Dot(heading, transform.forward);
-        if(dot<=0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return dot > 0;
     }
 
     void SetRotation()
