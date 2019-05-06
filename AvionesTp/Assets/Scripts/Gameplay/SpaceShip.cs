@@ -62,7 +62,7 @@ public class SpaceShip : ShipBase
 
     private void OnTriggerEnter(Collider other)
     {
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Floor" || LayerMask.LayerToName(other.gameObject.layer) == "Water")
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Floor" || LayerMask.LayerToName(other.gameObject.layer) == "Water" || other.tag == "Enemy")
         {
             Health = 0;
         }
@@ -72,10 +72,6 @@ public class SpaceShip : ShipBase
             Health -= 50;
         }
 
-        if (other.tag == "Enemy")
-        {
-            Health = 0;
-        }
         Debug.Log("Health: " + Health);
     }
 
