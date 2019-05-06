@@ -29,8 +29,6 @@ public class SpaceShip : ShipBase
         Physics.gravity = new Vector3(0f,-91.8f, 0f);
         machineGun = GetComponentInChildren<MachineGun>();
         Health = 200;
- 
-        
     }
 
     private void FixedUpdate()
@@ -72,7 +70,6 @@ public class SpaceShip : ShipBase
             Health -= 50;
         }
 
-        Debug.Log("Health: " + Health);
     }
 
 
