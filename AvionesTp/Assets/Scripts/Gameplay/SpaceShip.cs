@@ -18,6 +18,8 @@ public class SpaceShip : ShipBase
     private float InputYaw;
     private float Throttle;
     private MachineGun machineGun;
+    public Camera cameraObject;
+    public bool cameraOn;
 
     void Awake()
     {
@@ -29,6 +31,7 @@ public class SpaceShip : ShipBase
         Physics.gravity = new Vector3(0f,-91.8f, 0f);
         machineGun = GetComponentInChildren<MachineGun>();
         Health = 200;
+        cameraOn = true;
     }
 
     private void FixedUpdate()
@@ -55,6 +58,14 @@ public class SpaceShip : ShipBase
             transform.Rotate(InputPitch * PitchRate * Time.deltaTime, InputYaw * YawRate * Time.deltaTime, InputRoll * RollRate * Time.deltaTime, Space.Self);
             machineGun.Attack();
      
+        }
+        if (cameraOn)
+        {
+            cameraObject.gameObject.transform.localPosition = new Vector3(0f, 0f, 8f);
+        }
+        else
+        {
+            cameraObject.gameObject.transform.localPosition = new Vector3(0f, 5f, -19f);
         }
     }
 
@@ -114,6 +125,11 @@ public class SpaceShip : ShipBase
         else
         {
             Throttle = Mathf.MoveTowards(Throttle, Target, Time.deltaTime * 0.25f);
+        }
+        if(Input.GetKey(KeyCode.C))
+        {
+            cameraOn = !cameraOn;
+          
         }
         
     }    
